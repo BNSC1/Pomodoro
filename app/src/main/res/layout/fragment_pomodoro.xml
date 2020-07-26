@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PomodoroFragment">
+
+
+    <TextView
+        android:id="@+id/TimeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="@+id/StopBT"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Time" />
+
+    <Button
+        android:id="@+id/BreakBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="37dp"
+        android:text="Break"
+        app:layout_constraintBottom_toBottomOf="@+id/TomatoBT"
+        app:layout_constraintEnd_toStartOf="@+id/TomatoBT"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/TomatoBT" />
+
+    <Button
+        android:id="@+id/TomatoBT"
+        android:layout_width="122dp"
+        android:layout_height="99dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="16dp"
+        android:text="Tomato!"
+        android:textColor="#FF0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/RestBT"
+        app:layout_constraintStart_toEndOf="@+id/BreakBT"
+        app:layout_constraintTop_toTopOf="@+id/StopBT"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/RestBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Rest"
+        app:layout_constraintBottom_toBottomOf="@+id/TomatoBT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/TomatoBT"
+        app:layout_constraintTop_toTopOf="@+id/TomatoBT" />
+
+    <Button
+        android:id="@+id/StopBT"
+        android:layout_width="382dp"
+        android:layout_height="133dp"
+        android:text="STOP"
+        android:textColor="#FF0000"
+        android:textSize="36sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="invisible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
