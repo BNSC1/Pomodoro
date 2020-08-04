@@ -6,4 +6,9 @@
     <string name="pomodoro">Pomodoro</string>
     <string name="chart">Chart</string>
     <string name="settings">Settings</string>
+    <string name="min">min</string>
+    <string name="pomodoro_length">Pomodoro Length:</string>
+    <string name="rest_length">Rest Length:</string>
+    <string name="break_length">Break Length:</string>
+    <string name="alert">Alert:</string>
 </resources>

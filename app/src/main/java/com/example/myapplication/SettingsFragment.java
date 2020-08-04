@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,8 @@ import androidx.fragment.app.Fragment;
  * A simple {@link Fragment} subclass.
  */
 public class SettingsFragment extends Fragment {
-
+    SharedPreferences settings;
+    SharedPreferences.Editor editor;
     public SettingsFragment() {
         // Required empty public constructor
     }

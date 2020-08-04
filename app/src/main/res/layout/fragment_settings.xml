@@ -1,14 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <EditText
+        android:id="@+id/rsET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toEndOf="@+id/rs1TV"
+        app:layout_constraintTop_toTopOf="@+id/rs1TV" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/brET2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toEndOf="@+id/br1TV"
+        app:layout_constraintTop_toBottomOf="@+id/pm1TV" />
+
+    <TextView
+        android:id="@+id/rs1TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="@string/rest_length"
+        app:layout_constraintStart_toStartOf="@+id/br1TV"
+        app:layout_constraintTop_toBottomOf="@+id/br1TV" />
+
+    <TextView
+        android:id="@+id/pm1TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:text="@string/pomodoro_length"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/br2TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/min"
+        app:layout_constraintStart_toEndOf="@+id/brET2"
+        app:layout_constraintTop_toTopOf="@+id/brET2" />
+
+    <TextView
+        android:id="@+id/rs2TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/min"
+        app:layout_constraintStart_toEndOf="@+id/rsET"
+        app:layout_constraintTop_toTopOf="@+id/rsET" />
+
+    <TextView
+        android:id="@+id/pm2TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/min"
+        app:layout_constraintStart_toEndOf="@+id/pmET"
+        app:layout_constraintTop_toTopOf="@+id/pmET" />
+
+    <TextView
+        android:id="@+id/br1TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/break_length"
+        app:layout_constraintStart_toStartOf="@+id/pm1TV"
+        app:layout_constraintTop_toBottomOf="@+id/pm1TV" />
+
+    <EditText
+        android:id="@+id/pmET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toEndOf="@+id/pm1TV"
+        app:layout_constraintTop_toTopOf="@+id/pm1TV" />
+
+    <TextView
+        android:id="@+id/alertTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/alert"
+        app:layout_constraintStart_toStartOf="@+id/rs1TV"
+        app:layout_constraintTop_toBottomOf="@+id/rs1TV" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="209dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="28dp"
+        app:layout_constraintStart_toEndOf="@+id/alertTV"
+        app:layout_constraintTop_toTopOf="@+id/alertTV" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
