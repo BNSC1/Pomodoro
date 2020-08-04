@@ -10,48 +10,51 @@
         android:id="@+id/rsET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        app:layout_constraintStart_toEndOf="@+id/rs1TV"
-        app:layout_constraintTop_toTopOf="@+id/rs1TV" />
+        app:layout_constraintEnd_toEndOf="@+id/brET2"
+        app:layout_constraintStart_toStartOf="@+id/brET2"
+        app:layout_constraintTop_toBottomOf="@+id/brET2" />
 
     <EditText
         android:id="@+id/brET2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        app:layout_constraintStart_toEndOf="@+id/br1TV"
-        app:layout_constraintTop_toBottomOf="@+id/pm1TV" />
+        app:layout_constraintEnd_toEndOf="@+id/pmET"
+        app:layout_constraintStart_toStartOf="@+id/pmET"
+        app:layout_constraintTop_toBottomOf="@+id/pmET" />
 
     <TextView
         android:id="@+id/rs1TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:text="@string/rest_length"
-        app:layout_constraintStart_toStartOf="@+id/br1TV"
-        app:layout_constraintTop_toBottomOf="@+id/br1TV" />
+        app:layout_constraintBottom_toBottomOf="@+id/rsET"
+        app:layout_constraintEnd_toStartOf="@+id/rsET"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rsET" />
 
     <TextView
         android:id="@+id/pm1TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
         android:text="@string/pomodoro_length"
+        app:layout_constraintBottom_toBottomOf="@+id/pmET"
+        app:layout_constraintEnd_toStartOf="@+id/pmET"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/pmET" />
 
     <TextView
         android:id="@+id/br2TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:text="@string/min"
+        app:layout_constraintBottom_toBottomOf="@+id/brET2"
         app:layout_constraintStart_toEndOf="@+id/brET2"
         app:layout_constraintTop_toTopOf="@+id/brET2" />
 
@@ -60,8 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="@string/min"
+        app:layout_constraintBottom_toBottomOf="@+id/rsET"
         app:layout_constraintStart_toEndOf="@+id/rsET"
         app:layout_constraintTop_toTopOf="@+id/rsET" />
 
@@ -70,8 +73,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:text="@string/min"
+        app:layout_constraintBottom_toBottomOf="@+id/pmET"
         app:layout_constraintStart_toEndOf="@+id/pmET"
         app:layout_constraintTop_toTopOf="@+id/pmET" />
 
@@ -79,37 +82,43 @@
         android:id="@+id/br1TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="9dp"
         android:text="@string/break_length"
-        app:layout_constraintStart_toStartOf="@+id/pm1TV"
-        app:layout_constraintTop_toBottomOf="@+id/pm1TV" />
+        app:layout_constraintBottom_toBottomOf="@+id/brET2"
+        app:layout_constraintEnd_toStartOf="@+id/brET2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/brET2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/pmET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="172dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        app:layout_constraintStart_toEndOf="@+id/pm1TV"
-        app:layout_constraintTop_toTopOf="@+id/pm1TV" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/alertTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
         android:text="@string/alert"
-        app:layout_constraintStart_toStartOf="@+id/rs1TV"
-        app:layout_constraintTop_toBottomOf="@+id/rs1TV" />
+        app:layout_constraintBottom_toBottomOf="@+id/spinner"
+        app:layout_constraintEnd_toStartOf="@+id/spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spinner" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="209dp"
         android:layout_height="46dp"
-        android:layout_marginStart="28dp"
-        app:layout_constraintStart_toEndOf="@+id/alertTV"
-        app:layout_constraintTop_toTopOf="@+id/alertTV" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/rsET"
+        app:layout_constraintStart_toStartOf="@+id/rsET"
+        app:layout_constraintTop_toBottomOf="@+id/rsET" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
