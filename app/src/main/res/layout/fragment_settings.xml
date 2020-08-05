@@ -13,12 +13,12 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="@+id/brET2"
-        app:layout_constraintStart_toStartOf="@+id/brET2"
-        app:layout_constraintTop_toBottomOf="@+id/brET2" />
+        app:layout_constraintEnd_toEndOf="@+id/brET"
+        app:layout_constraintStart_toStartOf="@+id/brET"
+        app:layout_constraintTop_toBottomOf="@+id/brET" />
 
     <EditText
-        android:id="@+id/brET2"
+        android:id="@+id/brET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -54,9 +54,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/min"
-        app:layout_constraintBottom_toBottomOf="@+id/brET2"
-        app:layout_constraintStart_toEndOf="@+id/brET2"
-        app:layout_constraintTop_toTopOf="@+id/brET2" />
+        app:layout_constraintBottom_toBottomOf="@+id/brET"
+        app:layout_constraintStart_toEndOf="@+id/brET"
+        app:layout_constraintTop_toTopOf="@+id/brET" />
 
     <TextView
         android:id="@+id/rs2TV"
@@ -85,10 +85,10 @@
         android:layout_marginTop="17dp"
         android:layout_marginBottom="9dp"
         android:text="@string/break_length"
-        app:layout_constraintBottom_toBottomOf="@+id/brET2"
-        app:layout_constraintEnd_toStartOf="@+id/brET2"
+        app:layout_constraintBottom_toBottomOf="@+id/brET"
+        app:layout_constraintEnd_toStartOf="@+id/brET"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/brET2"
+        app:layout_constraintTop_toTopOf="@+id/brET"
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
@@ -107,13 +107,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/alert"
-        app:layout_constraintBottom_toBottomOf="@+id/spinner"
-        app:layout_constraintEnd_toStartOf="@+id/spinner"
+        app:layout_constraintBottom_toBottomOf="@+id/alertSP"
+        app:layout_constraintEnd_toStartOf="@+id/alertSP"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spinner" />
+        app:layout_constraintTop_toTopOf="@+id/alertSP" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/alertSP"
         android:layout_width="209dp"
         android:layout_height="46dp"
         android:layout_marginTop="8dp"
