@@ -17,9 +17,10 @@ import androidx.fragment.app.Fragment;
  * A simple {@link Fragment} subclass.
  */
 public class SettingsFragment extends Fragment{
-    EditText pomodoroLength, breakLength, restLength;
+    public static EditText pomodoroLength, breakLength, restLength;
     Spinner alertType;
     public static Context context;
+    mTextWatcher tc=new mTextWatcher(this);
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -32,8 +33,8 @@ public class SettingsFragment extends Fragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTextWatcher tc=new mTextWatcher(this.getActivity());
-        context=getActivity().getApplicationContext();
+//        context=getActivity().getApplicationContext();
+
     }
     public static Context getaContext(){return context;}
     @Override
@@ -51,6 +52,8 @@ public class SettingsFragment extends Fragment{
         breakLength =(EditText) getView().findViewById(R.id.brET);
         restLength =(EditText) getView().findViewById(R.id.rsET);
         alertType=(Spinner) getView().findViewById(R.id.alertSP);
+        tc.objects(pomodoroLength,breakLength,restLength,alertType);
+        pomodoroLength.addTextChangedListener(tc);
         pomodoroLength.setText("");
     }
 }
