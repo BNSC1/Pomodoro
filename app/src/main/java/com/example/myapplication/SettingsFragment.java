@@ -18,8 +18,6 @@ import androidx.fragment.app.Fragment;
  * A simple {@link Fragment} subclass.
  */
 public class SettingsFragment extends Fragment{
-    SharedPreferences settings;
-    SharedPreferences.Editor editor;
     EditText pomodoroLength, breakLength, restLength;
     Spinner alertType;
 
@@ -33,18 +31,25 @@ public class SettingsFragment extends Fragment{
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TextChangedListener tc=new TextChangedListener(this.getActivity());
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        settings=getActivity().getSharedPreferences("Pomodoro Length", Context.MODE_PRIVATE);
+//        settings=getActivity().getSharedPreferences("Pomodoro Length", Context.MODE_PRIVATE);
+
         return inflater.inflate(R.layout.fragment_settings, container, false);
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        pomodoroLength = getView().findViewById(R.id.pmET);
-        breakLength =getView().findViewById(R.id.brET);
-        restLength =getView().findViewById(R.id.rsET);
-        alertType=getView().findViewById(R.id.alertSP);
+        pomodoroLength =(EditText) getView().findViewById(R.id.pmET);
+        breakLength =(EditText) getView().findViewById(R.id.brET);
+        restLength =(EditText) getView().findViewById(R.id.rsET);
+        alertType=(Spinner) getView().findViewById(R.id.alertSP);
     }
 }
