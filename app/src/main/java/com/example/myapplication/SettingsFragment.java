@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,7 @@ import androidx.fragment.app.Fragment;
 public class SettingsFragment extends Fragment{
     EditText pomodoroLength, breakLength, restLength;
     Spinner alertType;
-
+    public static Context context;
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -33,9 +32,10 @@ public class SettingsFragment extends Fragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TextChangedListener tc=new TextChangedListener(this.getActivity());
+        mTextWatcher tc=new mTextWatcher(this.getActivity());
+        context=getActivity().getApplicationContext();
     }
-
+    public static Context getaContext(){return context;}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,5 +51,6 @@ public class SettingsFragment extends Fragment{
         breakLength =(EditText) getView().findViewById(R.id.brET);
         restLength =(EditText) getView().findViewById(R.id.rsET);
         alertType=(Spinner) getView().findViewById(R.id.alertSP);
+        pomodoroLength.setText("");
     }
 }
