@@ -13,9 +13,9 @@ import androidx.fragment.app.FragmentActivity
 
 class mTextWatcher(context: SettingsFragment) : TextWatcher {
     var pomodoroLength:EditText?=null;var breakLength:EditText?=null;var restLength:EditText?=null
-//    var mContext:Context?=SettingsFragment.getaContext()
+    var mContext:Context?=SettingsFragment.getaContext()
     var context:SettingsFragment?=context
-    var settings: SharedPreferences? = context?.getSharedPreferences("settings",Context.MODE_PRIVATE)
+    var settings: SharedPreferences? = context.getSharedPreferences("settings",Context.MODE_PRIVATE)
     var editor: Editor? = settings?.edit()
     fun objects(pomodoroLength: EditText,breakLength:EditText,restLength:EditText,alertType: Spinner){
 
