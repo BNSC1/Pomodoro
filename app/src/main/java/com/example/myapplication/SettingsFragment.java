@@ -1,7 +1,10 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +22,9 @@ import androidx.fragment.app.Fragment;
 public class SettingsFragment extends Fragment{
     public EditText pomodoroLength, breakLength, restLength;
     Spinner alertType;
+    SharedPreferences settings=getActivity().getSharedPreferences("Pomodoro Length", Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor=settings.edit();
     public static Context context;
-    mTextWatcher tc=new mTextWatcher(this);
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -52,8 +56,22 @@ public class SettingsFragment extends Fragment{
         breakLength =(EditText) getView().findViewById(R.id.brET);
         restLength =(EditText) getView().findViewById(R.id.rsET);
         alertType=(Spinner) getView().findViewById(R.id.alertSP);
-        tc.objects(pomodoroLength,breakLength,restLength,alertType);
-//        pomodoroLength.addTextChangedListener(tc);
-        pomodoroLength.setText("");
+
+        pomodoroLength.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editor.putInt("Pomodoro Length", Integer.parseInt(pomodoroLength.getText().toString()));
+                editor.commit();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 }
