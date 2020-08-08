@@ -11,4 +11,5 @@
     <string name="rest_length">Rest Length:</string>
     <string name="break_length">Break Length:</string>
     <string name="alert">Alert:</string>
+    <string name="finish">done!</string>
 </resources>

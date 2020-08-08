@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -26,6 +27,7 @@ public class PomodoroFragment extends Fragment implements View.OnClickListener {
     private CountDownTimer cTimer = null;
     private TextView TimeTV;
     private Button TomatoBT, RestBT, BreakBT, StopBT;
+    private SharedPreferences settings;
     public PomodoroFragment() {
         // Required empty public constructor
     }
@@ -36,7 +38,7 @@ public class PomodoroFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         super.onCreate(savedInstanceState);
-
+        settings= this.requireActivity().getSharedPreferences("Pomodoro Length", Context.MODE_PRIVATE);
         return inflater.inflate(R.layout.fragment_pomodoro, container, false);
 
     }
@@ -44,7 +46,7 @@ public class PomodoroFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator = (Vibrator) requireActivity().getSystemService(Context.VIBRATOR_SERVICE);
 //        getActivity().setContentView(R.layout.fragment_pomodoro);
         TomatoBT = (Button) getActivity().findViewById(R.id.TomatoBT);
         TomatoBT.setOnClickListener(this); // calling onClick() method
@@ -63,17 +65,17 @@ public class PomodoroFragment extends Fragment implements View.OnClickListener {
         switch(v.getId()){
             case R.id.BreakBT:
                 cancelTimer();
-                startTimer(60*5);
+                startTimer(Integer.parseInt(settings.getString("Break Length","5"))*60);
                 hideStartButton();
                 break;
             case R.id.RestBT:
                 cancelTimer();
-                startTimer(60*30);
+                startTimer(Integer.parseInt(settings.getString("Rest Length","30"))*60);
                 hideStartButton();
                 break;
             case R.id.TomatoBT:
                 cancelTimer();
-                startTimer(60*25);
+                startTimer(Integer.parseInt(settings.getString("Pomodoro Length","25"))*60);
                 hideStartButton();
                 break;
             case R.id.StopBT:
@@ -92,7 +94,7 @@ public class PomodoroFragment extends Fragment implements View.OnClickListener {
 
             }
             public void onFinish() {
-                TimeTV.setText("done!");
+                TimeTV.setText(R.string.finish);
                 vibrator.vibrate(vibratepattern,-1);
                 //hideStopButton();
             }

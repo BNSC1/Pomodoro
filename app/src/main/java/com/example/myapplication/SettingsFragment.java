@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,16 +16,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.Objects;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SettingsFragment extends Fragment{
-    public EditText pomodoroLength, breakLength, restLength;
-    Spinner alertType;
-    SharedPreferences settings=getActivity().getSharedPreferences("Pomodoro Length", Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor=settings.edit();
-    public static Context context;
+    private EditText pomodoroLength, breakLength, restLength;
+    private Spinner alertType;
+    private SharedPreferences settings;
+    private SharedPreferences.Editor editor;
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -34,13 +36,14 @@ public class SettingsFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
     }
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        context=getActivity().getApplicationContext();
-
+        settings= this.requireActivity().getSharedPreferences("Pomodoro Length", Context.MODE_PRIVATE);
+        editor=settings.edit();
     }
-    public static Context getaContext(){return context;}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,11 +55,13 @@ public class SettingsFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        pomodoroLength =(EditText) getView().findViewById(R.id.pmET);
-        breakLength =(EditText) getView().findViewById(R.id.brET);
-        restLength =(EditText) getView().findViewById(R.id.rsET);
-        alertType=(Spinner) getView().findViewById(R.id.alertSP);
-
+        pomodoroLength =(EditText) requireView().findViewById(R.id.pmET);
+        breakLength =(EditText) requireView().findViewById(R.id.brET);
+        restLength =(EditText) requireView().findViewById(R.id.rsET);
+//        alertType=(Spinner) requireView().findViewById(R.id.alertSP);
+        pomodoroLength.setText(settings.getString("Pomodoro Length","25"));
+        breakLength.setText(settings.getString("Break Length","5"));
+        restLength.setText(settings.getString("Rest Length","30"));
         pomodoroLength.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -64,7 +69,39 @@ public class SettingsFragment extends Fragment{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                editor.putInt("Pomodoro Length", Integer.parseInt(pomodoroLength.getText().toString()));
+                editor.putString("Pomodoro Length", pomodoroLength.getText().toString());
+                editor.commit();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        breakLength.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editor.putString("Break Length", breakLength.getText().toString());
+                editor.commit();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        restLength.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editor.putString("Rest Length", restLength.getText().toString());
                 editor.commit();
             }
 
