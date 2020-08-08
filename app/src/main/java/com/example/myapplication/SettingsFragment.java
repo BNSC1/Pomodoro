@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,7 +23,7 @@ import java.util.Objects;
  */
 public class SettingsFragment extends Fragment{
     private EditText pomodoroLength, breakLength, restLength;
-    private Spinner alertType;
+//    private Spinner alertType;
     private SharedPreferences settings;
     private SharedPreferences.Editor editor;
     public SettingsFragment() {
@@ -36,7 +35,6 @@ public class SettingsFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
     }
 
-    @SuppressLint("CommitPrefEdits")
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +54,9 @@ public class SettingsFragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         pomodoroLength =(EditText) requireView().findViewById(R.id.pmET);
-        breakLength =(EditText) requireView().findViewById(R.id.brET);
-        restLength =(EditText) requireView().findViewById(R.id.rsET);
-//        alertType=(Spinner) requireView().findViewById(R.id.alertSP);
+        breakLength =(EditText) getView().findViewById(R.id.brET);
+        restLength =(EditText) getView().findViewById(R.id.rsET);
+//        alertType=(Spinner) getView().findViewById(R.id.alertSP);
         pomodoroLength.setText(settings.getString("Pomodoro Length","25"));
         breakLength.setText(settings.getString("Break Length","5"));
         restLength.setText(settings.getString("Rest Length","30"));
