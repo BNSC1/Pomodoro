@@ -65,17 +65,17 @@ public class PomodoroFragment extends Fragment implements View.OnClickListener {
         switch(v.getId()){
             case R.id.BreakBT:
                 cancelTimer();
-                startTimer(Integer.parseInt(settings.getString("Break Length","5"))*60);
+                startTimer(settings.getString("Break Length","5"));
                 hideStartButton();
                 break;
             case R.id.RestBT:
                 cancelTimer();
-                startTimer(Integer.parseInt(settings.getString("Rest Length","30"))*60);
+                startTimer(settings.getString("Rest Length","30"));
                 hideStartButton();
                 break;
             case R.id.TomatoBT:
                 cancelTimer();
-                startTimer(Integer.parseInt(settings.getString("Pomodoro Length","25"))*60);
+                startTimer(settings.getString("Pomodoro Length","25"));
                 hideStartButton();
                 break;
             case R.id.StopBT:
@@ -84,13 +84,14 @@ public class PomodoroFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-    private void startTimer(long time) {
-        cTimer = new CountDownTimer(time*1000, 1000) {
+    private void startTimer(String time) {
+        int mtime=Integer.parseInt(time)*60;
+        cTimer = new CountDownTimer(mtime*1000, 1000) {
             public void onTick(long millisUntilFinished) {
                 long m=millisUntilFinished/1000/60;
                 long s=(millisUntilFinished/1000-m*60);
-                if (s>=10) {TimeTV.setText(Objects.toString(m+":"+s));}
-                else {TimeTV.setText(Objects.toString(m+":0"+s));}
+                if (s>=10) {TimeTV.setText(m+":"+s);}
+                else {TimeTV.setText(m+":0"+s);}
 
             }
             public void onFinish() {
