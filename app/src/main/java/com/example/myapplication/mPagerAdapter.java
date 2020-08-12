@@ -15,13 +15,13 @@ public class mPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0: return new PomodoroFragment();
-//            case 1: return new ChartFragment();
+            case 1: return new ChartFragment();
             default: return new SettingsFragment();
         }
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 }

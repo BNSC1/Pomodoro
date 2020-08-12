@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
                 switch(position){
                     case 0: {tab.setText("Pomodoro"); tab.setIcon(R.drawable.ic_pomodoro); break;}
-//                    case 1: {tab.setText("Chart"); tab.setIcon(R.drawable.ic_chart);
-//                        BadgeDrawable badgeDrawable=tab.getOrCreateBadge();
-//                        badgeDrawable.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.colorAccent));
-//                        badgeDrawable.setVisible(true); badgeDrawable.setNumber(100); badgeDrawable.setMaxCharacterCount(3);
-//                        break;}
+                    case 1: {tab.setText("Chart"); tab.setIcon(R.drawable.ic_chart);
+                        BadgeDrawable badgeDrawable=tab.getOrCreateBadge();
+                        badgeDrawable.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.colorAccent));
+                        badgeDrawable.setVisible(true); badgeDrawable.setNumber(100); badgeDrawable.setMaxCharacterCount(3);
+                        break;}
                     default: {tab.setText("Settings"); tab.setIcon(R.drawable.ic_settings); break;}
                 }
             }
