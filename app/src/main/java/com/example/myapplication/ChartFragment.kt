@@ -34,14 +34,16 @@ class ChartFragment : Fragment() {
         // gap of 2f
         entries.add(BarEntry(5f, 70f))
         entries.add(BarEntry(6f, 60f))
-        val set = BarDataSet(entries, "BarDataSet")
+        val set = BarDataSet(entries, "Times of Pomodoro")
         val data = BarData(set)
-        data.barWidth = 0.9f // set custom bar width
+        data.barWidth = 0.5f // set custom bar width
 
         chart!!.data = data
         chart!!.setFitBars(true) // make the x-axis fit exactly all bars
 
         chart!!.invalidate() // refresh
+//        val xAxis = chart!!.xAxis
+//        xAxis.setCenterAxisLabels(true)
 
     }
 }
