@@ -28,6 +28,7 @@ public class PomodoroFragment extends Fragment implements View.OnClickListener {
     private TextView TimeTV;
     private Button TomatoBT, RestBT, BreakBT, StopBT;
     private SharedPreferences settings;
+    public DBAdapter helper;
     public PomodoroFragment() {
         // Required empty public constructor
     }
@@ -38,6 +39,7 @@ public class PomodoroFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         super.onCreate(savedInstanceState);
+        helper=new DBAdapter(getActivity());
         settings= this.requireActivity().getSharedPreferences("Pomodoro Length", Context.MODE_PRIVATE);
         return inflater.inflate(R.layout.fragment_pomodoro, container, false);
 
@@ -96,6 +98,7 @@ public class PomodoroFragment extends Fragment implements View.OnClickListener {
             }
             public void onFinish() {
                 TimeTV.setText(R.string.finish);
+
                 vibrator.vibrate(vibratepattern,-1);
                 //hideStopButton();
             }
