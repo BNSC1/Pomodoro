@@ -4,31 +4,37 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import com.example.myapplication.Message.message
 import java.text.SimpleDateFormat
 import java.util.*
 
 class DBAdapter(context: Context) {
     private var myhelper: myDbHelper
-    fun insertData(pomodoroCount: String?): Long {
+    fun insertData(date: String?): Long {
         val dbb = myhelper.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(myDbHelper.POMODOROCOUNT, pomodoroCount)
+        contentValues.put(myDbHelper.POMODOROCOUNT, 1)
+        contentValues.put(myDbHelper.DATE, date)
         return dbb.insert(myDbHelper.TABLE_NAME, null, contentValues)
     }
 
-    val data: String
-        get() {
+    fun getData(date:String): String{
             val db = myhelper.writableDatabase
             val columns = arrayOf(myDbHelper.DATE, myDbHelper.POMODOROCOUNT)
-            val cursor = db.query(myDbHelper.TABLE_NAME, columns, null, null, null, null, null)
+            val cursor = db.rawQuery("SELECT "+ myDbHelper.POMODOROCOUNT + " FROM " + myDbHelper.TABLE_NAME,null)
             val buffer = StringBuffer()
+            var pomodoroCount: String =""
             while (cursor.moveToNext()) {
-                val date= cursor.getString(cursor.getColumnIndex(myDbHelper.DATE))
-                val pomodoroCount = cursor.getString(cursor.getColumnIndex(myDbHelper.POMODOROCOUNT))
-                buffer.append("$date   $pomodoroCount   \n")
+//                val date= cursor.getString(cursor.getColumnIndex(myDbHelper.DATE))
+                pomodoroCount = cursor.getString(cursor.getColumnIndex(myDbHelper.POMODOROCOUNT))
+//                buffer.append("$pomodoroCount")
+//                Log.v("db","Append data?")
             }
-            return buffer.toString()
+            cursor.close()
+            db.close()
+//            return buffer.toString()
+        return pomodoroCount
         }
 
     fun delete(uname: String): Int {
@@ -37,18 +43,20 @@ class DBAdapter(context: Context) {
         return db.delete(myDbHelper.TABLE_NAME, myDbHelper.POMODOROCOUNT + " = ?", whereArgs)
     }
 
-    fun updateName(oldName: String, newName: String?): Int {
+    fun updateData(date: String, pomodoroCount: String?): Int {
+
         val db = myhelper.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(myDbHelper.POMODOROCOUNT, newName)
-        val whereArgs = arrayOf(oldName)
-        return db.update(myDbHelper.TABLE_NAME, contentValues, myDbHelper.POMODOROCOUNT + " = ?", whereArgs)
+        contentValues.put(myDbHelper.POMODOROCOUNT, pomodoroCount)
+        contentValues.put(myDbHelper.DATE,date)
+//        val whereArgs = arrayOf(oldName)
+        return db.update(myDbHelper.TABLE_NAME, contentValues, myDbHelper.DATE + " = ?", arrayOf(date))
     }
 
     internal class myDbHelper(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_Version) {
         override fun onCreate(db: SQLiteDatabase) {
             try {
-//                db.execSQL(CREATE_TABLE)
+                db.execSQL(CREATE_TABLE)
             } catch (e: Exception) {
                 message(context, "" + e)
             }
@@ -73,7 +81,9 @@ class DBAdapter(context: Context) {
 //            internal val FormatDate=SimpleDateFormat("YYYY-MM-DD")
             internal const val POMODOROCOUNT = "PomodoroCount" //Column II
             private const val CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
-                    " (" + DATE + " DATE, " + POMODOROCOUNT + " SMALLINT(255);"
+                    " (" +
+                    DATE + " DATE NOT NULL, " + POMODOROCOUNT + " SMALLINT DEFAULT 0 NOT NULL" +
+                    ");"
             private const val DROP_TABLE = "DROP TABLE IF EXISTS '$TABLE_NAME';"
         }
 
