@@ -35,7 +35,7 @@ public class PomodoroFragment extends Fragment implements View.OnClickListener {
     private SharedPreferences settings;
     private final short POMODORO=0,BREAK=1,REST=2;
     private short frag=POMODORO;
-    private String today= new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    private String today;
     public DBAdapter helper;
     private Cursor cursor;
     public PomodoroFragment() {
@@ -139,13 +139,13 @@ public class PomodoroFragment extends Fragment implements View.OnClickListener {
     }
     private void countPomodoro(){
 //        int oldCount=Integer.parseInt(helper.getData(today));
-        //TODO: date does not change on date change.
+        today=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         Log.v("db","1 "+today);
-        if(helper.getData(today)=="" || helper.getData(today)==null) {helper.insertData(today); Log.v("db","I put in data! "+helper.getData(today));}
+        if(helper.getData(today).equals("")) {helper.insertData(today); Log.v("db","I put in data! "+helper.getData(today));}
         else {
         Log.v("db","2 "+helper.getData(today));
-        Integer temp=Integer.parseInt(helper.getData(today))+1;
-        helper.updateData(today,temp.toString());
+        int temp=Integer.parseInt(helper.getData(today))+1;
+        helper.updateData(today, Integer.toString(temp));
         Log.v("db","3 "+helper.getData(today));
         }
 
