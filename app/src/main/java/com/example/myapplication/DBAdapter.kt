@@ -22,7 +22,9 @@ class DBAdapter(context: Context) {
     fun getData(date:String): String{
             val db = myhelper.writableDatabase
             val columns = arrayOf(myDbHelper.DATE, myDbHelper.POMODOROCOUNT)
-            val cursor = db.rawQuery("SELECT "+ myDbHelper.POMODOROCOUNT + " FROM " + myDbHelper.TABLE_NAME,null)
+            val cursor = db.rawQuery(
+                    "SELECT "+ myDbHelper.POMODOROCOUNT + " FROM " + myDbHelper.TABLE_NAME + " WHERE " + myDbHelper.DATE + "= ?"
+                    , arrayOf(date))
             val buffer = StringBuffer()
             var pomodoroCount: String =""
             while (cursor.moveToNext()) {
